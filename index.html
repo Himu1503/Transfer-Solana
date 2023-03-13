@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Airdrop Solana</title>
+
+</head>
+<body>
+
+    <h1> Send some SOL!!!! </h1>
+<div class="container">
+<input type="text" id="public-key" placeholder="Enter your public key" />
+<button id="btn" onclick="requestAirdrop()">Click me to Airdrop</button>
+</div>
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+<script>
+    const {Connection , PublicKey } =solanaWeb3;
+</script>
+
+<script>
+    async function requestAirdrop() {
+      // Get the public key from the input field
+      var  publicKeyStr = document.getElementById("public-key").value;
+      // Parse the public key string into a PublicKey object
+     
+
+      // Connect to the Solana Devnet
+      const connection = new Connection("https://api.devnet.solana.com");
+      let publicKey = new PublicKey(publicKeyStr);
+      // Request an airdrop of 1 SOL to the specified public key
+      const txhash = await connection.requestAirdrop(publicKey, 1e9);
+      console.log(`Airdrop successful. Transaction hash: ${txhash}`);
+    }
+  </script>
+</body>
+</html>
